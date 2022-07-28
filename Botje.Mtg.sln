@@ -5,11 +5,16 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.Api", "Botje.Mtg.Api\Botje.Mtg.Api.csproj", "{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.ScryfallClient", "Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj", "{12102D74-89EA-4281-A09C-FDDC76391428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.ScryfallClient", "Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj", "{12102D74-89EA-4281-A09C-FDDC76391428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.Application", "Botje.Mtg.Application\Botje.Mtg.Application.csproj", "{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.Application", "Botje.Mtg.Application\Botje.Mtg.Application.csproj", "{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.ScryfallClient.Tests", "Botje.Mtg.ScryfallClient.Tests\Botje.Mtg.ScryfallClient.Tests.csproj", "{6C6C9A00-94BC-4F3A-841E-249534411FE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.ScryfallClient.Tests", "Botje.Mtg.ScryfallClient.Tests\Botje.Mtg.ScryfallClient.Tests.csproj", "{6C6C9A00-94BC-4F3A-841E-249534411FE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{3C2E1598-9A2E-40C3-9016-6CD80AB48014}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

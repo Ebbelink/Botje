@@ -1,0 +1,31 @@
+version: '3.6'
+
+services:
+
+  botje-scryfall:
+    #image: madailei/scryfall-slack-botje:0.1.0
+    build:
+      context: .
+      dockerfile: ./Botje.Mtg.Api/Dockerfile
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=traefik-public
+        
+        - traefik.http.routers.botje-scryfall-http.entrypoints=http
+        - traefik.http.routers.botje-scryfall-http.rule=Host(`botje.ebbelink.com`)
+        - traefik.http.routers.botje-scryfall-http.middlewares=https-redirect
+        
+        - traefik.http.routers.botje-scryfall-https.entrypoints=https
+        - traefik.http.routers.botje-scryfall-https.tls=true
+        - traefik.http.routers.botje-scryfall-https.tls.certresolver=le
+        - traefik.http.routers.botje-scryfall-https.rule=Host(`botje.ebbelink.com`)
+        
+        - traefik.http.services.botje-scryfall.loadbalancer.server.port=80
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
