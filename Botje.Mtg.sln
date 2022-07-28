@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.Api", "Botje.Mtg.Api\Botje.Mtg.Api.csproj", "{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.ScryfallClient", "Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj", "{12102D74-89EA-4281-A09C-FDDC76391428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.Application", "Botje.Mtg.Application\Botje.Mtg.Application.csproj", "{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.ScryfallClient.Tests", "Botje.Mtg.ScryfallClient.Tests\Botje.Mtg.ScryfallClient.Tests.csproj", "{6C6C9A00-94BC-4F3A-841E-249534411FE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE94EB23-35A8-4358-9B8A-DEE2F60C64FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12102D74-89EA-4281-A09C-FDDC76391428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12102D74-89EA-4281-A09C-FDDC76391428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12102D74-89EA-4281-A09C-FDDC76391428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12102D74-89EA-4281-A09C-FDDC76391428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D0C72A-EDFC-44DF-AD13-0A0918550E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CE3B661-3558-4BA8-913A-E6CE05FCB799}
+	EndGlobalSection
+EndGlobal
