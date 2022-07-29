@@ -2,6 +2,7 @@ name: Docker Image CI
 
 env:
   IMAGE_NAME: "madailei/scryfall-slack-botje"
+  DOCKERFILE_PATH: "./Botje.Mtg.Api/Dockerfile"
 
 on:
   push:
@@ -20,6 +21,6 @@ jobs:
         ls -la
         dockerImageTag="${{ env.IMAGE_NAME }}:continuous-$(date +'%Y-%m-%d')-epoch-$(date +'%s')"
         echo $dockerImageTag
-        docker build . --file Dockerfile --tag $dockerImageTag
+        docker build . --file ${{ DOCKERFILE_PATH }} --tag $dockerImageTag
         docker login -u madailei -p ${{ secrets.DOCKER_SECRET }}
         docker image push $dockerImageTag
