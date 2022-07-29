@@ -1,0 +1,39 @@
+name: Tag Docker image
+
+env:
+  IMAGE_NAME: "madailei/mr-ebbelink-be-strapi"
+
+on:
+  workflow_dispatch:
+    inputs:
+      sourceTag:
+        description: The tag of the image (e.g. madailei/mr-ebbelink-be-strapi:[SOURCE_TAG])
+        required: true
+      destinationTag:
+        description: Destination tag
+        required: true
+      tagAsLatest:
+        description: Add the `latest` tag to this image
+        type: boolean
+        required: true
+
+jobs:
+
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Tag docker image
+      run: |
+        docker login -u madailei -p ${{ secrets.DOCKER_SECRET }}
+        
+        docker pull ${{ env.IMAGE_NAME }}:${{ github.event.inputs.sourceTag }} 
+      
+        docker tag ${{ env.IMAGE_NAME }}:${{ github.event.inputs.sourceTag }} ${{ env.IMAGE_NAME }}:${{ github.event.inputs.destinationTag }}
+        
+        if (${{ github.event.inputs.tagAsLatest }}); 
+        then
+          docker tag ${{ env.IMAGE_NAME }}:${{ github.event.inputs.sourceTag }} ${{ env.IMAGE_NAME }}:latest
+        fi
+        
+        docker push ${{ env.IMAGE_NAME }} --all-tags

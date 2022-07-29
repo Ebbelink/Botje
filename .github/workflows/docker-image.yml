@@ -2,17 +2,20 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    # branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
 
 jobs:
-
-  build:
-
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag madailei/scryfall-slack-botje:$(date +%s)
+    - uses: actions/checkout@v2  
+    - name: Build and push Docker image
+      run: |
+        dockerImageTag="madailei/mr-ebbelink-be-strapi:continuous-$(date +'%Y-%m-%d')-epoch-$(date +'%s')"
+        echo $dockerImageTag
+        docker build . --file Dockerfile --tag $dockerImageTag
+        docker login -u madailei -p ${{ secrets.DOCKER_SECRET }}
+        docker image push $dockerImageTag
