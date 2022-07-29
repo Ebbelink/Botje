@@ -11,19 +11,23 @@ public class SlackController : ControllerBase
     private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
 
     [HttpPost("events")]
-    public IActionResult Events([FromBody] object rawJson)
+    public async Task<IActionResult> Events()
     {
-        string json = rawJson.ToString();
+        string rawJson = "";
+        using (var sr = new StreamReader(Request.Body))
+        {
+            rawJson = await sr.ReadToEndAsync();
+        }
 
-        UrlVerification? urlVerification = JsonSerializer.Deserialize<UrlVerification>(json, _serializerOptions);
+        Console.WriteLine($"Raw request: \n{rawJson}");
+
+        UrlVerification? urlVerification = JsonSerializer.Deserialize<UrlVerification>(rawJson, _serializerOptions);
 
         if (urlVerification != null
             && urlVerification.Type == "url_verification")
         {
             return Ok(urlVerification.Challenge);
         }
-
-        Console.WriteLine(rawJson);
 
         return Ok();
     }

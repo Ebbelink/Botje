@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Botje.Mtg.Api.Tests.ServiceComponentTests"/>
+	</ItemGroup>
+
 </Project>

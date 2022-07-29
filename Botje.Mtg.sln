@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHubWorkflows", "GitHubWo
 		.github\workflows\docker-tag-image.yml = .github\workflows\docker-tag-image.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Botje.Mtg.Api.Tests.ServiceComponentTests", "Botje.Mtg.Api.Tests.ServiceComponentTests\Botje.Mtg.Api.Tests.ServiceComponentTests.csproj", "{6A50CBB2-2C45-4DA9-8BD0-F63585718555}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C6C9A00-94BC-4F3A-841E-249534411FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A50CBB2-2C45-4DA9-8BD0-F63585718555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A50CBB2-2C45-4DA9-8BD0-F63585718555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A50CBB2-2C45-4DA9-8BD0-F63585718555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A50CBB2-2C45-4DA9-8BD0-F63585718555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
