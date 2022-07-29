@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Botje.Mtg.ScryfallClient.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{3C2E1598-9A2E-40C3-9016-6CD80AB48014}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.yaml = docker-compose.yaml
+		docker-compose-local.yaml = docker-compose-local.yaml
+		docker-compose.prod.yaml = docker-compose.prod.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHubWorkflows", "GitHubWorkflows", "{7C9A5425-1392-428F-A983-959D931C72FA}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\docker-image.yml = .github\workflows\docker-image.yml
+		.github\workflows\docker-tag-image.yml = .github\workflows\docker-tag-image.yml
 	EndProjectSection
 EndProject
 Global
@@ -41,6 +48,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7C9A5425-1392-428F-A983-959D931C72FA} = {3C2E1598-9A2E-40C3-9016-6CD80AB48014}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CE3B661-3558-4BA8-913A-E6CE05FCB799}
