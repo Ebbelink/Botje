@@ -1,13 +1,13 @@
 name: Tag Docker image
 
 env:
-  IMAGE_NAME: "madailei/mr-ebbelink-be-strapi"
+  IMAGE_NAME: "madailei/scryfall-slack-botje"
 
 on:
   workflow_dispatch:
     inputs:
       sourceTag:
-        description: The tag of the image (e.g. madailei/mr-ebbelink-be-strapi:[SOURCE_TAG])
+        description: The tag of the image (e.g. madailei/scryfall-slack-botje:[SOURCE_TAG])
         required: true
       destinationTag:
         description: Destination tag

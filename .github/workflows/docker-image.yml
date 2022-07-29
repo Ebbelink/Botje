@@ -1,5 +1,8 @@
 name: Docker Image CI
 
+env:
+  IMAGE_NAME: "madailei/scryfall-slack-botje"
+
 on:
   push:
     # branches: [ main ]
@@ -14,7 +17,7 @@ jobs:
     - uses: actions/checkout@v2  
     - name: Build and push Docker image
       run: |
-        dockerImageTag="madailei/mr-ebbelink-be-strapi:continuous-$(date +'%Y-%m-%d')-epoch-$(date +'%s')"
+        dockerImageTag="${{ env.IMAGE_NAME }}:continuous-$(date +'%Y-%m-%d')-epoch-$(date +'%s')"
         echo $dockerImageTag
         docker build . --file Dockerfile --tag $dockerImageTag
         docker login -u madailei -p ${{ secrets.DOCKER_SECRET }}
