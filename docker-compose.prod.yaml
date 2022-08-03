@@ -20,9 +20,16 @@ services:
         - traefik.http.routers.botje-scryfall-https.rule=Host(`botje.ebbelink.com`)
         
         - traefik.http.services.botje-scryfall.loadbalancer.server.port=80
+    secrets:
+      - SCRYFALL_BOTJE-logging-access-key
+    environment:
+      - LOGGING_ACCESS_KEY=/run/secrets/SCRYFALL_BOTJE-logging-access-key
     networks:
       - traefik-public
 
 networks:
   traefik-public:
+    external: true
+secrets:
+  SCRYFALL_BOTJE-logging-access-key:
     external: true
