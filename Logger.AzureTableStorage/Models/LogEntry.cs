@@ -32,14 +32,13 @@ public class LogEntry : ITableEntity
     {
         get
         {
-            return DateTime.Parse(RowKey);
+            return DateTime.SpecifyKind(DateTime.Parse(RowKey), DateTimeKind.Utc);
         }
         set
         {
             RowKey = value.ToString("o");
         }
     }
-    public EventId EventId { get; set; }
     public string Message { get; set; }
     public bool HasException { get; set; }
     public Exception Exception { get; set; }

@@ -1,18 +1,17 @@
 version: '3.6'
 
 services:
-
+  # http://localhost:45000/swagger/index.html
   botje-scryfall:
     build:
       context: .
       dockerfile: ./Botje.Mtg.Api/Dockerfile
     environment:
-      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=test-key-for-debug
+      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=5B/SE7km35p2bg7f/fpHBrdomTA+OI7sq+CDGCmz9fOLVSzaYxZ7c8/uZP9f/yBv7CFJSWUD7zu2DhhBHlH6cg==
     networks:
       - traefik-public
     ports:
       - 45000:80
-      - 45001:443
 
 networks:
   traefik-public:

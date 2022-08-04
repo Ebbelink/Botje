@@ -57,11 +57,10 @@ public class TableStorageLogger : ILogger
         _tableStorageContext.LogEntryManager.Add(new Models.LogEntry
         {
             LogLevel = logLevel,
-            EventId = eventId,
             Message = formatter(state, exception),
             HasException = exception != null,
             Exception = exception
-        });
+        }).GetAwaiter().GetResult();
     }
 
     private string Format<TState>(TState state, Exception ex)

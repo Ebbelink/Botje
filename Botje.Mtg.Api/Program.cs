@@ -47,7 +47,5 @@ static void Configure(WebApplication app)
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:TableName"));
     }
 
-    app.UseHttpsRedirection();
-
     app.UseAuthorization();
 }

@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 
 namespace Logger.AzureTableStorage;
 
-internal interface ITableDataAccessor<External, Internal>
+internal interface ITableDataAccessor<External>
     where External : new()
-    where Internal : new()
 {
-    Task<External> Add(External entity);
+    Task Add(External entity);
 
     //Task<IEnumerable<External>> Get();
 

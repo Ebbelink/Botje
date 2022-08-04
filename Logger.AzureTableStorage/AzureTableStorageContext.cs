@@ -7,7 +7,7 @@ namespace Logger.AzureTableStorage;
 
 internal class AzureTableStorageContext
 {
-    public readonly ITableDataAccessor<LogEntry, LogEntry> LogEntryManager;
+    public readonly ITableDataAccessor<LogEntry> LogEntryManager;
 
     public AzureTableStorageContext(string accountName, string accountKey, Uri storageUrl, string tableName)
     {
