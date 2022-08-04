@@ -1,5 +1,5 @@
-﻿using LogAzureTableStorage.TableManagers;
-using Logger.AzureTableStorage.Models;
+﻿using Logger.AzureTableStorage.Models;
+using Logger.AzureTableStorage.TableManagers;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
