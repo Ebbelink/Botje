@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Botje.Mtg.Api/Dockerfile
     environment:
-      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=5B/SE7km35p2bg7f/fpHBrdomTA+OI7sq+CDGCmz9fOLVSzaYxZ7c8/uZP9f/yBv7CFJSWUD7zu2DhhBHlH6cg==
+      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=test-key-for-debug
     networks:
       - traefik-public
     ports:
