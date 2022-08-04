@@ -21,9 +21,9 @@ services:
         
         - traefik.http.services.botje-scryfall.loadbalancer.server.port=80
     secrets:
-      - SCRYFALL_BOTJE-logging-access-key
+      - SCRYFALL_BOTJE-logging-access-key-2
     environment:
-      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=/run/secrets/SCRYFALL_BOTJE-logging-access-key
+      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=/run/secrets/SCRYFALL_BOTJE-logging-access-key-2
     networks:
       - traefik-public
 
@@ -31,5 +31,5 @@ networks:
   traefik-public:
     external: true
 secrets:
-  SCRYFALL_BOTJE-logging-access-key:
+  SCRYFALL_BOTJE-logging-access-key-2:
     external: true
