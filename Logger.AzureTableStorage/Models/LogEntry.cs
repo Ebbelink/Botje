@@ -1,15 +1,21 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
+﻿using Azure;
+using Azure.Data.Tables;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace Logger.AzureTableStorage.Models;
 
-public class LogEntry : TableEntity
+public class LogEntry : ITableEntity
 {
     public LogEntry()
     {
         LogDateTimeUtc = DateTime.UtcNow;
     }
+
+    public string PartitionKey { get; set; }
+    public string RowKey { get; set; }
+    public DateTimeOffset? Timestamp { get; set; } = default!;
+    public ETag ETag { get; set; } = default!;
 
     public LogLevel LogLevel
     {

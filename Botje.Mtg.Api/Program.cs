@@ -42,7 +42,9 @@ static void Configure(WebApplication app)
     {
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
-            app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"));
+            app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"),
+            new Uri(app.Configuration.GetValue<string>("AzureStorageAccountConfig:Url")),
+            app.Configuration.GetValue<string>("AzureStorageAccountConfig:TableName"));
     }
 
     app.UseHttpsRedirection();

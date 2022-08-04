@@ -7,9 +7,9 @@ namespace Botje.Mtg.ScryfallClient.Decorators;
 internal class ScryfallClientLogDecorator : IScryfallClient
 {
     private readonly IScryfallClient _decorated;
-    private readonly ILogger<ScryfallClientLogDecorator> _logger;
+    private readonly ILogger _logger;
 
-    public ScryfallClientLogDecorator(IScryfallClient decorated, ILogger<ScryfallClientLogDecorator> logger)
+    public ScryfallClientLogDecorator(IScryfallClient decorated, ILogger logger)
     {
         _decorated = decorated;
         _logger = logger;

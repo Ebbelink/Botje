@@ -16,7 +16,7 @@ public class TableStorageLogger : ILogger
     /// </summary>
     public TableStorageLogger()
     {
-        _tableStorageContext = new AzureTableStorageContext(TableStorageLoggerSetup.StorageAccountName, TableStorageLoggerSetup.StorageAccountKey);
+        _tableStorageContext = new AzureTableStorageContext(TableStorageLoggerSetup.StorageAccountName, TableStorageLoggerSetup.StorageAccountKey, TableStorageLoggerSetup.StorageUrl, TableStorageLoggerSetup.TableName);
     }
 
     /// <summary>

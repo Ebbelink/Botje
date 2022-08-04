@@ -1,7 +1,7 @@
-﻿using Logger.AzureTableStorage.Models;
+﻿using Azure.Data.Tables;
+using Logger.AzureTableStorage.Models;
 using Logger.AzureTableStorage.TableManagers;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
+using System;
 
 namespace Logger.AzureTableStorage;
 
@@ -9,19 +9,14 @@ internal class AzureTableStorageContext
 {
     public readonly ITableDataAccessor<LogEntry, LogEntry> LogEntryManager;
 
-    public AzureTableStorageContext(string accountName, string accountKey)
+    public AzureTableStorageContext(string accountName, string accountKey, Uri storageUrl, string tableName)
     {
-        CloudStorageAccount storageAccount = new CloudStorageAccount(
-            new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(
-                accountName,
-                accountKey),
-                true
-            );
+        TableServiceClient tableServiceClient = new TableServiceClient(storageUrl, new TableSharedKeyCredential(accountName, accountKey));
 
-        // Create the table client.
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+        TableClient tableClient = tableServiceClient.GetTableClient(tableName);
 
-        // Because Azure Table Storage has no built in identity generation we create or own.
+        tableClient.CreateIfNotExists();
+
         LogEntryManager = new LogEntryManager(tableClient);
     }
 }

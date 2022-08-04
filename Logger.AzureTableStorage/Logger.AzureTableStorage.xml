@@ -55,6 +55,16 @@
             The storage accounts key
             </summary>
         </member>
+        <member name="P:Logger.AzureTableStorage.TableStorageLoggerSetup.StorageUrl">
+            <summary>
+            The url where the storage can be located
+            </summary>
+        </member>
+        <member name="P:Logger.AzureTableStorage.TableStorageLoggerSetup.TableName">
+            <summary>
+            The name of the table we are connecting to
+            </summary>
+        </member>
         <member name="M:Logger.AzureTableStorage.TableStorageLoggerSetup.AddTableStorageLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Add table storage logger<br/>
@@ -70,6 +80,17 @@
             <param name="app"></param>
             <param name="azureStorageAccountName"></param>
             <param name="azureStorageAccountKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Logger.AzureTableStorage.TableStorageLoggerSetup.UseTableStorageLogger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String,System.Uri,System.String)">
+            <summary>
+            Use the table storage logger
+            </summary>
+            <param name="app"></param>
+            <param name="azureStorageAccountName"></param>
+            <param name="azureStorageAccountKey"></param>
+            <param name="storageUrl"></param>
+            <param name="tableName"></param>
             <returns></returns>
         </member>
     </members>

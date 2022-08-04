@@ -9,14 +9,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Logger.AzureTableStorage.Tests"/>
+		<InternalsVisibleTo Include="Logger.AzureTableStorage.Tests" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Azure.Data.Tables" Version="12.6.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-		<PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
 </Project>

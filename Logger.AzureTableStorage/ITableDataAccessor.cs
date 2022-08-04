@@ -10,13 +10,13 @@ internal interface ITableDataAccessor<External, Internal>
 {
     Task<External> Add(External entity);
 
-    Task<IEnumerable<External>> Get();
+    //Task<IEnumerable<External>> Get();
 
-    Task<IEnumerable<External>> Get(Func<Internal, bool> predicate);
+    //Task<IEnumerable<External>> Get(Func<Internal, bool> predicate);
 
-    Task<External> Get(int id);
+    //Task<External> Get(int id);
 
-    Task Update(External entity);
+    //Task Update(External entity);
 
-    Task<bool> Delete(int id);
+    //Task<bool> Delete(int id);
 }

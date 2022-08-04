@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Logger.AzureTableStorage;
 
@@ -17,6 +18,15 @@ public static class TableStorageLoggerSetup
     /// The storage accounts key
     /// </summary>
     public static string StorageAccountKey { get; set; }
+    /// <summary>
+    /// The url where the storage can be located
+    /// </summary>
+    public static Uri StorageUrl { get; private set; }
+
+    /// <summary>
+    /// The name of the table we are connecting to
+    /// </summary>
+    public static string TableName { get; private set; }
 
     /// <summary>
     /// Add table storage logger<br/>
@@ -42,6 +52,24 @@ public static class TableStorageLoggerSetup
     {
         StorageAccountName = azureStorageAccountName;
         StorageAccountKey = azureStorageAccountKey;
+
+        return app;
+    }
+
+    /// <summary>
+    /// Use the table storage logger
+    /// </summary>
+    /// <param name="app"></param>
+    /// <param name="azureStorageAccountName"></param>
+    /// <param name="azureStorageAccountKey"></param>
+    /// <param name="storageUrl"></param>
+    /// <param name="tableName"></param>
+    /// <returns></returns>
+    public static IApplicationBuilder UseTableStorageLogger(this IApplicationBuilder app, string azureStorageAccountName, string azureStorageAccountKey, Uri storageUrl, string tableName)
+    {
+        app.UseTableStorageLogger(azureStorageAccountName, azureStorageAccountKey);
+        StorageUrl = storageUrl;
+        TableName = tableName;
 
         return app;
     }
