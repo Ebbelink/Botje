@@ -17,6 +17,7 @@ app.Run();
 
 static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager)
 {
+    // Add the application specific environment variables
     configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
 
     services.AddControllers();

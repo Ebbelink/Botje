@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Logger.AzureTableStorage.Models;
-using Logger.AzureTableStorage;
 
 namespace Logger.AzureTableStorage.TableManagers;
 

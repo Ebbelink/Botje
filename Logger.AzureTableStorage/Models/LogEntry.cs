@@ -4,7 +4,7 @@ using System;
 
 namespace Logger.AzureTableStorage.Models;
 
-internal class LogEntry : TableEntity
+public class LogEntry : TableEntity
 {
     public LogEntry()
     {
