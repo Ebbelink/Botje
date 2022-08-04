@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Logger.AzureTableStorage</name>
+    </assembly>
+    <members>
+        <member name="T:LogAzureTableStorage.TableStorageLogger">
+            <summary>
+            A Azure Table Storage Logger
+            </summary>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLogger.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLogger.BeginScope``1(``0)">
+            <summary>
+            Start a logging scope
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            Check if a certain logging level is enabled
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <summary>
+            Log a thing
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logLevel">The <see cref="T:Microsoft.Extensions.Logging.LogLevel"/> to use</param>
+            <param name="eventId">The <see cref="T:Microsoft.Extensions.Logging.EventId"/> to use</param>
+            <param name="state">The state that </param>
+            <param name="exception"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="T:LogAzureTableStorage.TableStorageLoggerSetup">
+            <summary>
+            Table storage logger dependency injection extension methods
+            </summary>
+        </member>
+        <member name="P:LogAzureTableStorage.TableStorageLoggerSetup.StorageAccountName">
+            <summary>
+            The storage accounts name
+            </summary>
+        </member>
+        <member name="P:LogAzureTableStorage.TableStorageLoggerSetup.StorageAccountKey">
+            <summary>
+            The storage accounts key
+            </summary>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLoggerSetup.AddTableStorageLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add table storage logger<br/>
+            Registers: <see cref="T:Microsoft.Extensions.Logging.ILogger"/>
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogAzureTableStorage.TableStorageLoggerSetup.UseTableStorageLogger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            Use the table storage logger
+            </summary>
+            <param name="app"></param>
+            <param name="azureStorageAccountName"></param>
+            <param name="azureStorageAccountKey"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

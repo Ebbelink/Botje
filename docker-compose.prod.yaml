@@ -23,7 +23,7 @@ services:
     secrets:
       - SCRYFALL_BOTJE-logging-access-key
     environment:
-      - LOGGING_ACCESS_KEY=/run/secrets/SCRYFALL_BOTJE-logging-access-key
+      - SCRYFALL_BOTJE-LOGGING_ACCESS_KEY=/run/secrets/SCRYFALL_BOTJE-logging-access-key
     networks:
       - traefik-public
 

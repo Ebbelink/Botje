@@ -16,10 +16,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj" />
+    <ProjectReference Include="..\Logger.AzureTableStorage\Logger.AzureTableStorage.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Botje.Mtg.Api.Tests.ServiceComponentTests"/>
+		<InternalsVisibleTo Include="Botje.Mtg.Api.Tests.ServiceComponentTests" />
 	</ItemGroup>
 
 </Project>

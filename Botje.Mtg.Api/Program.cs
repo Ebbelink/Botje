@@ -1,4 +1,5 @@
 using Botje.Mtg.ScryfallClient;
+using Logger.AzureTableStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +17,15 @@ app.Run();
 
 static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager)
 {
+    configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
+
     services.AddControllers();
     services.AddEndpointsApiExplorer()
         .AddSwaggerGen()
-        // TODO: Get the uri base address from config
-        .RegisterScryfallClient(new Uri(configurationManager.GetSection("ScryfallBaseAddress").Value),
+        .RegisterScryfallClient(
+            new Uri(configurationManager.GetSection("ScryfallBaseAddress").Value),
             configurationManager.GetSection("CardCachePath").Value)
+        .AddTableStorageLogger()
         ;
 }
 
@@ -32,6 +36,12 @@ static void Configure(WebApplication app)
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+    }
+    else
+    {
+        app.UseTableStorageLogger(
+            app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
+            app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"));
     }
 
     app.UseHttpsRedirection();
