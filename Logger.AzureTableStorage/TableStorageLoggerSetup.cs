@@ -34,9 +34,16 @@ public static class TableStorageLoggerSetup
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection AddTableStorageLogger(this IServiceCollection services)
+    public static IServiceCollection AddTableStorageLogger(this IServiceCollection services, bool isDevelopment = false)
     {
-        services.AddTransient<ILogger, TableStorageLogger>();
+        if (isDevelopment)
+        {
+            services.AddTransient<ILogger, LocalLogger>();
+        }
+        else
+        {
+            services.AddTransient<ILogger, TableStorageLogger>();
+        }
 
         return services;
     }

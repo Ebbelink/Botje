@@ -4,6 +4,37 @@
         <name>Logger.AzureTableStorage</name>
     </assembly>
     <members>
+        <member name="T:Logger.AzureTableStorage.LocalLogger">
+            <summary>
+            A Azure Table Storage Logger
+            </summary>
+        </member>
+        <member name="M:Logger.AzureTableStorage.LocalLogger.BeginScope``1(``0)">
+            <summary>
+            Start a logging scope
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Logger.AzureTableStorage.LocalLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            Check if a certain logging level is enabled
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Logger.AzureTableStorage.LocalLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <summary>
+            Log a thing
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logLevel">The <see cref="T:Microsoft.Extensions.Logging.LogLevel"/> to use</param>
+            <param name="eventId">The <see cref="T:Microsoft.Extensions.Logging.EventId"/> to use</param>
+            <param name="state">The state that </param>
+            <param name="exception"></param>
+            <param name="formatter"></param>
+        </member>
         <member name="T:Logger.AzureTableStorage.TableStorageLogger">
             <summary>
             A Azure Table Storage Logger
@@ -65,7 +96,7 @@
             The name of the table we are connecting to
             </summary>
         </member>
-        <member name="M:Logger.AzureTableStorage.TableStorageLoggerSetup.AddTableStorageLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Logger.AzureTableStorage.TableStorageLoggerSetup.AddTableStorageLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Boolean)">
             <summary>
             Add table storage logger<br/>
             Registers: <see cref="T:Microsoft.Extensions.Logging.ILogger"/>
