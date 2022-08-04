@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   botje-scryfall:
-    image: madailei/scryfall-slack-botje:0.1.4
+    image: madailei/scryfall-slack-botje:0.1.5
     deploy:
       labels:
         - traefik.enable=true
