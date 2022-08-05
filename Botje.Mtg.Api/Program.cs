@@ -1,3 +1,4 @@
+using Botje.Mtg.Api;
 using Botje.Mtg.ScryfallClient;
 using Logger.AzureTableStorage;
 
@@ -17,8 +18,9 @@ app.Run();
 
 static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager)
 {
-    // Add the application specific environment variables
-    configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
+    // Add the applications secrets to the configuration
+    //configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
+    configurationManager.SetupSecrets();
 
     services.AddControllers();
     services.AddEndpointsApiExplorer()
@@ -41,12 +43,12 @@ static void Configure(WebApplication app)
     else
     {
         Console.WriteLine("~~~~~~~~~~LOGGING_ACCESS_KEY~~~~~~~~~~");
-        Console.WriteLine(app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"));
+        Console.WriteLine(app.Configuration.GetValue<string>("SCRYFALL_BOTJE-LOGGING_ACCESS_KEY"));
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
-            app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"),
+            app.Configuration.GetValue<string>("SCRYFALL_BOTJE-LOGGING_ACCESS_KEY"),
             new Uri(app.Configuration.GetValue<string>("AzureStorageAccountConfig:Url")),
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:TableName"));
     }
