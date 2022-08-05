@@ -45,10 +45,6 @@ static void Configure(WebApplication app)
     }
     else
     {
-        Console.WriteLine("~~~~~~~~~~LOGGING_ACCESS_KEY~~~~~~~~~~");
-        Console.WriteLine(app.Configuration.GetValue<string>("SCRYFALL_BOTJE-logging-access-key-2"));
-        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
             app.Configuration.GetValue<string>("SCRYFALL_BOTJE-logging-access-key-2"),
