@@ -5,7 +5,7 @@ using Logger.AzureTableStorage;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-ConfigureServices(builder.Services, builder.Configuration);
+ConfigureServices(builder.Services, builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
@@ -16,11 +16,14 @@ app.MapControllers();
 
 app.Run();
 
-static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager)
+static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager, IWebHostEnvironment environment)
 {
     // Add the applications secrets to the configuration
     //configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
-    configurationManager.SetupSecrets();
+    if (!environment.IsDevelopment())
+    {
+        configurationManager.SetupSecrets();
+    }
 
     services.AddControllers();
     services.AddEndpointsApiExplorer()
@@ -43,12 +46,12 @@ static void Configure(WebApplication app)
     else
     {
         Console.WriteLine("~~~~~~~~~~LOGGING_ACCESS_KEY~~~~~~~~~~");
-        Console.WriteLine(app.Configuration.GetValue<string>("SCRYFALL_BOTJE-LOGGING_ACCESS_KEY"));
+        Console.WriteLine(app.Configuration.GetValue<string>("SCRYFALL_BOTJE-logging-access-key-2"));
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
-            app.Configuration.GetValue<string>("SCRYFALL_BOTJE-LOGGING_ACCESS_KEY"),
+            app.Configuration.GetValue<string>("SCRYFALL_BOTJE-logging-access-key-2"),
             new Uri(app.Configuration.GetValue<string>("AzureStorageAccountConfig:Url")),
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:TableName"));
     }
