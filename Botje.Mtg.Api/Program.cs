@@ -40,6 +40,10 @@ static void Configure(WebApplication app)
     }
     else
     {
+        Console.WriteLine("~~~~~~~~~~LOGGING_ACCESS_KEY~~~~~~~~~~");
+        Console.WriteLine(app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"));
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
             app.Configuration.GetValue<string>("LOGGING_ACCESS_KEY"),
