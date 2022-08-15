@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj" />
+  </ItemGroup>
+
 </Project>

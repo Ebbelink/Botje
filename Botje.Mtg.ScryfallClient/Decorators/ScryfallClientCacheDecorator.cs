@@ -9,6 +9,7 @@ internal class ScryfallClientCacheDecorator : IScryfallClient
 {
     private readonly IScryfallRefitClient _decorated;
     private readonly ICardCache _cardCache;
+    private const int PAGE_SIZE = 20;
 
     public ScryfallClientCacheDecorator(IScryfallClient decorated, ICardCache cardCache)
     {
@@ -39,7 +40,7 @@ internal class ScryfallClientCacheDecorator : IScryfallClient
                 return lowestPrice;
             });
 
-            var cardsToReturn = orderedResult.Skip((10 * parameters.Page ?? 1) - 10).Take(10).ToList();
+            var cardsToReturn = orderedResult.Skip((PAGE_SIZE * parameters.Page ?? 1) - PAGE_SIZE).Take(PAGE_SIZE).ToList();
 
             return Task.FromResult(new CardsSearchResponse() { Data = cardsToReturn.ToList(), TotalCards = cardsToReturn.Count });
         }

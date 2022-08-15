@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Botje.Mtg.Application\Botje.Mtg.Application.csproj" />
     <ProjectReference Include="..\Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj" />
     <ProjectReference Include="..\Logger.AzureTableStorage\Logger.AzureTableStorage.csproj" />
     <ProjectReference Include="..\Slack.Dto\Slack.Dto.csproj" />

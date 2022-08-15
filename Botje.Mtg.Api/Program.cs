@@ -1,4 +1,5 @@
 using Botje.Mtg.Api;
+using Botje.Mtg.Application;
 using Botje.Mtg.ScryfallClient;
 using Logger.AzureTableStorage;
 
@@ -31,7 +32,8 @@ static void ConfigureServices(IServiceCollection services, ConfigurationManager 
         .RegisterScryfallClient(
             new Uri(configurationManager.GetSection("ScryfallBaseAddress").Value),
             configurationManager.GetSection("CardCachePath").Value)
-        .AddTableStorageLogger()
+        .AddTableStorageLogger(environment.IsDevelopment())
+        .AddApplicationHandlers()
         ;
 }
 

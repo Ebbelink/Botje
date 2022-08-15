@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Slack.Dto;
+namespace Slack.Dto.Events;
 
 public class Element
 {

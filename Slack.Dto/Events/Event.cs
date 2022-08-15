@@ -1,21 +1,27 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Slack.Dto;
+namespace Slack.Dto.Events;
 
-public class Event
+public class Event : Message
 {
     [JsonConstructor]
-    public Event(
-        string type,
-        string subtype,
-        Message message,
-        PreviousMessage previousMessage,
-        string channel,
-        bool hidden,
-        string timestamp,
-        string eventTimestamp,
-        string channelType
-    )
+    public Event(string clientMessageId,
+            string type,
+            string subtype,
+            Message message,
+            PreviousMessage previousMessage,
+            string channel,
+            bool hidden,
+            string timestamp,
+            string eventTimestamp,
+            string channelType,
+
+            string text,
+            string user,
+            string team,
+            //List<Attachment> attachments, 
+            List<Block> blocks)
+        : base(clientMessageId, type, text, user, team, new List<Attachment>(), blocks, timestamp)
     {
         Type = type;
         Subtype = subtype;
@@ -29,7 +35,7 @@ public class Event
     }
 
     [JsonPropertyName("type")]
-    public string Type { get; init; }
+    public new string Type { get; init; }
 
     [JsonPropertyName("subtype")]
     public string Subtype { get; init; }
@@ -47,7 +53,7 @@ public class Event
     public bool Hidden { get; init; }
 
     [JsonPropertyName("ts")]
-    public string Timestamp { get; init; }
+    public new string Timestamp { get; init; }
 
     [JsonPropertyName("event_ts")]
     public string EventTimestamp { get; init; }

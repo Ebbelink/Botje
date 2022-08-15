@@ -21,7 +21,7 @@ internal class ScryfallClientLogDecorator : IScryfallClient
 
         var result = await _decorated.CardSearch(parameters);
 
-        _logger.LogInformation($"Found {result.TotalCards} cards for {parameters.Query}");
+        _logger.LogInformation($"Found {result.TotalCards} options for {parameters.Query}");
 
         return result;
     }
