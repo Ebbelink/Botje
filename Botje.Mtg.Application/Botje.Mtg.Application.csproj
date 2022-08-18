@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Botje.Mtg.ScryfallClient\Botje.Mtg.ScryfallClient.csproj" />
+    <ProjectReference Include="..\Slack.Client\Slack.Client.csproj" />
+    <ProjectReference Include="..\Slack.Dto\Slack.Dto.csproj" />
   </ItemGroup>
 
 </Project>

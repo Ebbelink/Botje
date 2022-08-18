@@ -15,32 +15,47 @@ public static class DependencyInjection
     {
         services.AddSingleton<ICardCache>(_ =>
         {
-            var cache =  new CardCache();
+            var cache = new CardCache();
             cache.InitializeCache(cardCachePath);
             return cache;
         });
 
+        RegisterScryfallBase(services, scryfallUriBaseAddress);
+
+        return services;
+    }
+
+    public static IServiceCollection RegisterScryfallClient(
+        this IServiceCollection services,
+        Uri scryfallUriBaseAddress,
+        string[] cardCachePaths)
+    {
+        string completeOfflineCardCache = "";
+        foreach (var path in cardCachePaths)
+        {
+            completeOfflineCardCache += File.ReadAllText(path);
+        }
+
+        services.AddSingleton<ICardCache>(_ =>
+        {
+            var cache = new CardCache();
+            var cards = CardCache.ParseFromJson(completeOfflineCardCache);
+            cache.InitializeCache(cards);
+            return cache;
+        });
+
+        RegisterScryfallBase(services, scryfallUriBaseAddress);
+
+        return services;
+    }
+
+    private static void RegisterScryfallBase(IServiceCollection services, Uri scryfallUriBaseAddress)
+    {
         services
             .AddRefitClient<IScryfallRefitClient>()
             .ConfigureHttpClient(c => c.BaseAddress = scryfallUriBaseAddress);
         services.AddScoped<IScryfallClient, ScryfallRefitClientWrapper>()
             .Decorate<IScryfallClient, ScryfallClientCacheDecorator>()
             .Decorate<IScryfallClient, ScryfallClientLogDecorator>();
-
-        return services;
     }
-
-    //private static IServiceCollection AddPwcInvoiceServiceClient(
-    //    this IServiceCollection services, string countryCode, Uri baseUri,
-    //    string username, string password, string domain)
-    //{
-    //    services.AddHttpClient($"PwcInvoicingClient-{countryCode}", client =>
-    //    {
-    //        client.BaseAddress = baseUri;
-    //        client.Timeout = TimeSpan.FromSeconds(30);
-    //    })
-    //    .AddTypedClient(RestService.For<IInvoicingClient>);
-
-    //    return services;
-    //}
 }

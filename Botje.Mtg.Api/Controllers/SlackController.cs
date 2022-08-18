@@ -1,12 +1,8 @@
 ﻿using Botje.Mtg.Api.Dtos.Slack.Events;
 using Botje.Mtg.Application;
-using Botje.Mtg.ScryfallClient;
-using Botje.Mtg.ScryfallClient.RefitClients.CardSearch;
-using Botje.Mtg.ScryfallClient.RefitClients.CardSearch.Response;
 using Microsoft.AspNetCore.Mvc;
 using Slack.Dto.Events;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace Botje.Mtg.Api.Controllers;
 
@@ -40,7 +36,7 @@ public class SlackController : ControllerBase
         // Handle card search inquiry 
         if (message.Event != null && message.Event.Type == "message" && !string.IsNullOrWhiteSpace(message.Event.Text))
         {
-            _handler.Handle(message.Event.Text);
+            await _handler.Handle(message.Event);
         }
 
         return Ok();

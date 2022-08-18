@@ -59,7 +59,6 @@ namespace Botje.Mtg.Api.Tests.ServiceComponentTests
 
         [Theory]
         [MemberData(nameof(RawSlackMessages))]
-        //[InlineData("")]
         public async Task VerifyCanProcessMessages(string rawJson)
         {
             var client = _webAppFactory.CreateClient();

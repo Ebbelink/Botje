@@ -3,6 +3,9 @@ using Botje.Mtg.Application;
 using Botje.Mtg.ScryfallClient;
 using Logger.AzureTableStorage;
 
+const string LOGGING_ACCESS_KEY_CONFIG_NAME = "SCRYFALL_BOTJE-logging-access-key-2";
+const string SLACK_BOT_TOKEN_CONFIG_NAME = "SCRYFALL_BOTJE-slack-bot-token";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -31,9 +34,9 @@ static void ConfigureServices(IServiceCollection services, ConfigurationManager 
         .AddSwaggerGen()
         .RegisterScryfallClient(
             new Uri(configurationManager.GetSection("ScryfallBaseAddress").Value),
-            configurationManager.GetSection("CardCachePath").Value)
+            configurationManager.GetSection("CardCachePaths").Get<string[]>())
         .AddTableStorageLogger(environment.IsDevelopment())
-        .AddApplicationHandlers()
+        .AddApplicationHandlers(configurationManager.GetValue<string>(SLACK_BOT_TOKEN_CONFIG_NAME))
         ;
 }
 
@@ -49,7 +52,7 @@ static void Configure(WebApplication app)
     {
         app.UseTableStorageLogger(
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:AccountName"),
-            app.Configuration.GetValue<string>("SCRYFALL_BOTJE-logging-access-key-2"),
+            app.Configuration.GetValue<string>(LOGGING_ACCESS_KEY_CONFIG_NAME),
             new Uri(app.Configuration.GetValue<string>("AzureStorageAccountConfig:Url")),
             app.Configuration.GetValue<string>("AzureStorageAccountConfig:TableName"));
     }
