@@ -33,7 +33,10 @@ public static class DependencyInjection
         string completeOfflineCardCache = "";
         foreach (var path in cardCachePaths)
         {
-            completeOfflineCardCache += File.ReadAllText(path);
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                completeOfflineCardCache += File.ReadAllText(path);
+            }
         }
 
         services.AddSingleton<ICardCache>(_ =>
