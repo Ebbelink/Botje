@@ -48,18 +48,19 @@ public class MessageReceivedHandler
             responseMessage.AddCard(card);
         }
 
-        //JsonSerializerOptions options = new()
-        //{
-        //    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        //    Converters = {
-        //        new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-        //    }
-        //};
-        //string json = JsonSerializer.Serialize(responseMessage, options);
+        JsonSerializerOptions options = new()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Converters = {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            }
+        };
+        string json = JsonSerializer.Serialize(responseMessage, options);
+        Console.WriteLine($"request message: {json}");
 
 
         var result = await _slackClient.PostMessage(responseMessage);
-        Console.WriteLine(result.Content);
+        Console.WriteLine($"response content: {result.Content}");
     }
 
     public static IEnumerable<string> GetCardNamesWithinSquareBrackets(string input)
