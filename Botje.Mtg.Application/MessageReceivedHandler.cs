@@ -59,6 +59,7 @@ public class MessageReceivedHandler
 
 
         var result = await _slackClient.PostMessage(responseMessage);
+        Console.WriteLine(result.Content);
     }
 
     public static IEnumerable<string> GetCardNamesWithinSquareBrackets(string input)
