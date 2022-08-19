@@ -19,6 +19,8 @@ public static class DependencyInjection
             }
         };
 
+        Console.WriteLine($"botToken {botToken}");
+
         services.AddRefitClient<ISlackClient>(new RefitSettings()
                 {
                     ContentSerializer = new SystemTextJsonContentSerializer(options),
