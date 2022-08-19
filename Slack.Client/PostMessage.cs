@@ -1,4 +1,4 @@
-﻿using Slack.Client.Dtos;
+﻿using Slack.Client.Dtos.BaseTypes;
 using System.Text.Json.Serialization;
 
 namespace Slack.Client;

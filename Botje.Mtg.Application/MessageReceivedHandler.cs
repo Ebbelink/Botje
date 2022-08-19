@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using Slack.Client;
 using Slack.Dto.Events;
 using System.Text.RegularExpressions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Botje.Mtg.Application;
 
@@ -43,44 +45,20 @@ public class MessageReceivedHandler
         var responseMessage = new FoundCardsSlackMessage(messageContents.Channel, messageContents.Timestamp);
         foreach (var card in uniqueCards)
         {
-            responseMessage.AddCard(card.Name, card.MultiverseIds.First(), card.ImageUris.Normal, card.SetName, new Dictionary<string, string>());
+            responseMessage.AddCard(card);
         }
 
-        await _slackClient.PostMessage(new FoundCardsSlackMessage(messageContents.Channel, messageContents.Timestamp));
-
-        //// Set the channel and timestamp to respond to a message in a thread
-        //Message fullMessage = new Message { Channel = message.Channel, Thread_ts = message.Timestamp }.SetText("Cards found:");
-        //foreach (Card distinctCard in distinctCards)
+        //JsonSerializerOptions options = new()
         //{
-        //    // Always add the found card name, multiverse id and set name to the message to give feedback on the found cards
-        //    fullMessage.Text += $"{distinctCard.Name} - {distinctCard.MultiverseId} - {distinctCard.SetName} \r\n";
-
-        //    try
-        //    {
-        //        Card cardWithImage = flattenedRawCardList.Where(c => c.Name == distinctCard.Name).GetMostRecentCardWithImage();
-
-        //        fullMessage.AddAttachment(new Attachment("")
-        //        {
-        //            Title = cardWithImage.Name,
-        //            Image_url = cardWithImage.ImageUrl.ToString()
-        //        }.AddField(new AttachmentField("Legality",
-        //                string.Join(",\n", cardWithImage.Legalities.Select(l => $"*{l.Format}*: {l.LegalityName}")),
-        //                true))
-        //            .AddField(new AttachmentField("Set",
-        //                string.Join(", ", cardWithImage.SetName),
-        //                true)));
+        //    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        //    Converters = {
+        //        new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
         //    }
-        //    catch (CardWithoutImageException e)
-        //    {
-        //        _logger.LogError($"{nameof(SlackEventHandler)} | {nameof(EventHandler)} | EXCEPTION {e.Message}");
+        //};
+        //string json = JsonSerializer.Serialize(responseMessage, options);
 
-        //        // Add an attachment to the full message. This attachment is the card info in text format
-        //        fullMessage.AddAttachment(new Attachment($"{distinctCard.Name} | {distinctCard.ManaCost}") { }
-        //            .AddField(new AttachmentField("Ruletext", distinctCard.Text))
-        //            .AddField(new AttachmentField("Type", distinctCard.Type) { Short = true })
-        //            .AddField(new AttachmentField("Power", $"{(!string.IsNullOrEmpty(distinctCard.Power) ? $"{distinctCard.Power}/{distinctCard.Toughness}" : distinctCard.Loyalty)}") { Short = true }));
-        //    }
-        //}
+
+        var result = await _slackClient.PostMessage(responseMessage);
     }
 
     public static IEnumerable<string> GetCardNamesWithinSquareBrackets(string input)

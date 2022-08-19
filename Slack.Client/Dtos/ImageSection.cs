@@ -1,4 +1,7 @@
-﻿namespace Slack.Client.Dtos;
+﻿using Slack.Client.Dtos.BaseTypes;
+using Slack.Client.Dtos.Enums;
+
+namespace Slack.Client.Dtos;
 
 public class ImageSection : Section
 {

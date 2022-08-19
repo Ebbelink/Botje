@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using System.Linq;
+using Slack.Client.Dtos.BaseTypes;
 
 namespace Slack.Client.Tests;
 
@@ -18,14 +19,14 @@ public class RequestTests
     public static IEnumerable<object[]> PostMessage_Valid_Data()
     {
         return new List<object[]> {
-            new object[] { new List<Dtos.Section>(), "" },
-            new object[] { new List<Dtos.Section>() { new Dtos.ImageSection("","") }, "" },
+            new object[] { new List<Section>(), "" },
+            new object[] { new List<Section>() { new Dtos.ImageSection("","") }, "" },
         };
     }
 
     [Theory]
     [MemberData(nameof(PostMessage_Valid_Data))]
-    public void PostMessage_Valid(List<Dtos.Section>? blockInput, string? textInput)
+    public void PostMessage_Valid(List<Section>? blockInput, string? textInput)
     {
         var message = new PostMessage("", blocks: blockInput, text: textInput);
         message.Text.Should().Be(textInput);

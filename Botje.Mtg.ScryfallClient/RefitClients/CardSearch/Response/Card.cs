@@ -56,7 +56,8 @@ public class Card
     [JsonPropertyName("color_identity")]
     public List<string> ColorIdentity { get; set; }
     public List<string> Keywords { get; set; }
-    public Legalities Legalities { get; set; }
+    //public Legalities Legalities { get; set; }
+    public Dictionary<string, string> Legalities { get; set; }
     public List<string> Games { get; set; }
     public bool Reserved { get; set; }
     public bool Foil { get; set; }
