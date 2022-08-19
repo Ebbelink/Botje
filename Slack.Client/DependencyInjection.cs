@@ -19,8 +19,6 @@ public static class DependencyInjection
             }
         };
 
-        Console.WriteLine($"botToken {botToken}");
-
         services.AddRefitClient<ISlackClient>(new RefitSettings()
                 {
                     ContentSerializer = new SystemTextJsonContentSerializer(options),
@@ -28,7 +26,7 @@ public static class DependencyInjection
                 .ConfigureHttpClient(c =>
                 {
                     c.BaseAddress = new Uri("https://slack.com/api");
-                    c.DefaultRequestHeaders.Add("Authorization", botToken);
+                    c.DefaultRequestHeaders.Add("Authorization", "Bearer " + botToken);
                 });
 
         return services;
