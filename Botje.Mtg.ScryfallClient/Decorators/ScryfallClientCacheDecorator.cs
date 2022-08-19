@@ -9,7 +9,7 @@ internal class ScryfallClientCacheDecorator : IScryfallClient
 {
     private readonly IScryfallRefitClient _decorated;
     private readonly ICardCache _cardCache;
-    private const int PAGE_SIZE = 20;
+    private const int PAGE_SIZE = 10;
 
     public ScryfallClientCacheDecorator(IScryfallClient decorated, ICardCache cardCache)
     {
@@ -21,7 +21,10 @@ internal class ScryfallClientCacheDecorator : IScryfallClient
     {
         string QueryableNameAlphabeticalOnly = CardHelper.RemoveNonAlphabeticalCharactersFromString(parameters.Query);
         var result = _cardCache.Cache
-            .Where(card => (card.Name != null)
+            .Where(card => 
+                   card.Name != null
+                && card.Layout != null
+                && card.Layout != "art_series"
                 && card.Name_Queryable.Contains(QueryableNameAlphabeticalOnly, StringComparison.OrdinalIgnoreCase));
 
         if (result.Any())
