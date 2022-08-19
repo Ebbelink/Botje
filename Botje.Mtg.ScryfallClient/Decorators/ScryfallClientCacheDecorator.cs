@@ -25,6 +25,7 @@ internal class ScryfallClientCacheDecorator : IScryfallClient
                    card.Name != null
                 && card.Layout != null
                 && card.Layout != "art_series"
+                && card.Layout != "emblem"
                 && card.Name_Queryable.Contains(QueryableNameAlphabeticalOnly, StringComparison.OrdinalIgnoreCase));
 
         if (result.Any())
