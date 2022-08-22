@@ -17,6 +17,14 @@ public class MessageReceivedHandler
     private readonly ILogger _logger;
     private readonly ISlackClient _slackClient;
 
+    private readonly static JsonSerializerOptions _jsonSerializerOptions = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            }
+    };
+
     public MessageReceivedHandler(IScryfallClient scryfallClient, ILogger logger, ISlackClient slackClient)
     {
         _scryfallClient = scryfallClient;
@@ -48,16 +56,7 @@ public class MessageReceivedHandler
             responseMessage.AddCard(card);
         }
 
-        JsonSerializerOptions options = new()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            Converters = {
-                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-            }
-        };
-        string json = JsonSerializer.Serialize(responseMessage, options);
-        Console.WriteLine($"request message: {json}");
-
+        Console.WriteLine($"request message: {JsonSerializer.Serialize(responseMessage, _jsonSerializerOptions)}");
 
         var result = await _slackClient.PostMessage(responseMessage);
         Console.WriteLine($"response content: {result.Content}");

@@ -19,43 +19,63 @@ public class FoundCardsSlackMessage : PostMessage
     {
     }
 
-    //REQUIRED
     [JsonPropertyName("text")]
     public new string? Text
     {
         get
         {
-            return string.Join(", ", Blocks?.Where(b => b.GetType() == typeof(CardSection)).Select(b => (b as CardSection).CardName));
-        }
-    }
-
-    public void AddCard(string name, int multiverseId, string setName, Dictionary<string, string> legalities)
-    {
-        CardSection cardSection = new(name, multiverseId, setName, legalities);
-        Blocks!.Add(cardSection);
-    }
-
-    public void AddImage(string name, string? imgUrl, string setName, string linkToCard)
-    {
-        if (!string.IsNullOrWhiteSpace(imgUrl))
-        {
-            ImageSection imageSection = new(name, imgUrl, name + " - " + setName);
-            Blocks.Add(imageSection);
-        }
-        else
-        {
-            LinkButtonSection linkSection = new("Er lijkt geen plaatje te zijn. Gelukkig zijn er alternatieven:", "Scryfall", linkToCard);
-            Blocks.Add(linkSection);
+            var cardSections = Blocks?.Where(b => b.GetType() == typeof(CardSection)).Select(b => (b as CardSection)?.CardName);
+            return cardSections == null ? string.Empty : string.Join(", ", cardSections);
         }
     }
 
     public void AddCard(ScryfallResponse.Card card)
     {
         var onlyLegalLegalities = card.Legalities.Where(kvp => kvp.Value == "legal").ToDictionary(s => s.Key, e => e.Value);
-        AddCard(card.Name, card.MultiverseIds.FirstOrDefault(), card.SetName, onlyLegalLegalities);
+        AddCardSection(card.Name, card.MultiverseIds.FirstOrDefault(), card.SetName, onlyLegalLegalities);
 
-        AddImage(card.Name, card.ImageUris?.Normal, card.SetName, card.ScryfallUri);
+        AddCardImage(card);
 
+        AddCardResourceButtonsSection(card);
+    } 
+
+    private void AddCardSection(string name, int multiverseId, string setName, Dictionary<string, string> legalities)
+    {
+        CardSection cardSection = new(name, multiverseId, setName, legalities);
+        Blocks!.Add(cardSection);
+    }
+
+    public void AddCardImage(ScryfallResponse.Card card)
+    {
+        if (card.CardFaces != null && card.CardFaces.Any())
+        {
+            foreach (var face in card.CardFaces)
+            {
+                AddCardImageSection(face.Name, face.ImageUris.Normal, card.SetName, card.ScryfallUri);
+            }
+        }
+        else
+        {
+            AddCardImageSection(card.Name, card.ImageUris?.Normal, card.SetName, card.ScryfallUri);
+        }
+    }
+
+    private void AddCardImageSection(string name, string? imgUrl, string setName, string linkToCard)
+    {
+        if (!string.IsNullOrWhiteSpace(imgUrl))
+        {
+            ImageSection imageSection = new(name, imgUrl, name + " - " + setName);
+            Blocks!.Add(imageSection);
+        }
+        else
+        {
+            LinkButtonSection linkSection = new("Er lijkt geen plaatje te zijn. Gelukkig zijn er alternatieven:", "Scryfall", linkToCard);
+            Blocks!.Add(linkSection);
+        }
+    }
+
+    private void AddCardResourceButtonsSection(ScryfallResponse.Card card)
+    {
         var resourceButtons = new MultiButtonSection();
         if (!string.IsNullOrWhiteSpace(card.ScryfallUri))
         {

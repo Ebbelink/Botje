@@ -15,6 +15,7 @@ public class CardFace
     public string TypeLine { get; set; }
     [JsonPropertyName("oracle_text")]
     public string OracleText { get; set; }
+    public IEnumerable<string> Colors { get; set; }
     public string Power { get; set; }
     public string Toughness { get; set; }
     [JsonPropertyName("flavor_text")]
@@ -24,6 +25,8 @@ public class CardFace
     public string ArtistId { get; set; }
     [JsonPropertyName("illustration_id")]
     public string IllustrationId { get; set; }
+    [JsonPropertyName("image_uris")]
+    public ImageUris ImageUris { get; set; }
     [JsonPropertyName("flavor_name")]
     public string FlavorName { get; set; }
 }
