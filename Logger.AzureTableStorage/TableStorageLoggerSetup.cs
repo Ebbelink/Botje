@@ -42,7 +42,8 @@ public static class TableStorageLoggerSetup
         }
         else
         {
-            services.AddTransient<ILogger, TableStorageLogger>();
+            //services.AddTransient<ILogger, TableStorageLogger>();
+            services.AddTransient<ILogger, LocalLogger>();
         }
 
         return services;

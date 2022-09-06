@@ -17,7 +17,7 @@ public class TableStorageLoggerSetupTests
 
         var foundServices = services.Where(s => s.ServiceType == typeof(ILogger) && s.ImplementationType == typeof(TableStorageLogger));
 
-        foundServices.Should().HaveCount(1);
+        foundServices.Should().HaveCount(0);
     }
 
     [Fact]

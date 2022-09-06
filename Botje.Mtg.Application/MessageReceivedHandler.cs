@@ -14,7 +14,6 @@ namespace Botje.Mtg.Application;
 public class MessageReceivedHandler
 {
     private readonly IScryfallClient _scryfallClient;
-    private readonly ILogger _logger;
     private readonly ISlackClient _slackClient;
 
     private readonly static JsonSerializerOptions _jsonSerializerOptions = new()
@@ -25,17 +24,15 @@ public class MessageReceivedHandler
             }
     };
 
-    public MessageReceivedHandler(IScryfallClient scryfallClient, ILogger logger, ISlackClient slackClient)
+    public MessageReceivedHandler(IScryfallClient scryfallClient, ISlackClient slackClient)
     {
         _scryfallClient = scryfallClient;
-        _logger = logger;
         _slackClient = slackClient;
     }
 
     public async Task Handle(Event messageContents)
     {
         IEnumerable<string>? matchedCardNameQueries = GetCardNamesWithinSquareBrackets(messageContents.Text);
-        _logger.LogInformation($"Matched card name queries: \n{string.Join(" | ", matchedCardNameQueries)}");
 
         IEnumerable<Task<CardsSearchResponse>>? queryTasks = matchedCardNameQueries
                 .Select(name => _scryfallClient
@@ -46,8 +43,6 @@ public class MessageReceivedHandler
         IEnumerable<Card>? uniqueCards = foundCards
                 .SelectMany(card => card.Data)
                 .DistinctBy(card => card.Name);
-
-        _logger.LogInformation($"Found {uniqueCards.Count()} unique cards, \n{string.Join(" | ", uniqueCards.Select(card => card.Name))}");
 
         // TIME TO RESPOND!
         var responseMessage = new FoundCardsSlackMessage(messageContents.Channel, messageContents.Timestamp);

@@ -22,8 +22,6 @@ app.Run();
 
 static void ConfigureServices(IServiceCollection services, ConfigurationManager configurationManager, IWebHostEnvironment environment)
 {
-    // Add the applications secrets to the configuration
-    //configurationManager.AddEnvironmentVariables("SCRYFALL_BOTJE-");
     if (!environment.IsDevelopment())
     {
         configurationManager.SetupSecrets();
