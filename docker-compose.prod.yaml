@@ -8,7 +8,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.constraint-label=traefik-public
-        - traefik.docker.network=traefik-public
+        - traefik.docker.network=traefik
         
         - traefik.http.routers.botje-scryfall-http.entrypoints=http
         - traefik.http.routers.botje-scryfall-http.rule=Host(`botje.ebbelink.com`)
@@ -24,10 +24,10 @@ services:
       - SCRYFALL_BOTJE-logging-access-key-2
       - SCRYFALL_BOTJE-slack-bot-token
     networks:
-      - traefik-public
+      - traefik
 
 networks:
-  traefik-public:
+  traefik:
     external: true
 secrets:
   SCRYFALL_BOTJE-logging-access-key-2:
