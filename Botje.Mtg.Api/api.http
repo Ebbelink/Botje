@@ -1,0 +1,35 @@
+@API_HOST=https://localhost:32768
+
+### Slack event
+POST {{API_HOST}}/api/Slack/events
+Content-Type: application/json
+
+
+{
+  "user": "UEGLULXB3",
+  "type": "message",
+  "ts": "1723632855.345959",
+  "client_msg_id": "308f67ae-1b37-4d37-b67c-0881deb851b8",
+  "text": "[[ghalta]]",
+  "team": "TEGGX065N",
+  "blocks": [
+    {
+      "type": "rich_text",
+      "block_id": "GvgDe",
+      "elements": [
+        {
+          "type": "rich_text_section",
+          "elements": [
+            {
+              "type": "text",
+              "text": "[[ghalta]]"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "channel": "C03QYQ4QUBZ",
+  "event_ts": "1723632855.345959",
+  "channel_type": "group"
+}
