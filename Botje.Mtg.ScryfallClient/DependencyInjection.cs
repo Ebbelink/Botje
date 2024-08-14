@@ -56,7 +56,11 @@ public static class DependencyInjection
     {
         services
             .AddRefitClient<IScryfallRefitClient>()
-            .ConfigureHttpClient(c => c.BaseAddress = scryfallUriBaseAddress);
+            .ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = scryfallUriBaseAddress;
+                c.DefaultRequestHeaders.Add("User-Agent", "Botje.Mtg");
+            });
         services.AddScoped<IScryfallClient, ScryfallRefitClientWrapper>()
             .Decorate<IScryfallClient, ScryfallClientCacheDecorator>()
             .Decorate<IScryfallClient, ScryfallClientLogDecorator>();
