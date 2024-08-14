@@ -4,32 +4,52 @@
 POST {{API_HOST}}/api/Slack/events
 Content-Type: application/json
 
-
 {
-  "user": "UEGLULXB3",
-  "type": "message",
-  "ts": "1723632855.345959",
-  "client_msg_id": "308f67ae-1b37-4d37-b67c-0881deb851b8",
-  "text": "[[ghalta]]",
-  "team": "TEGGX065N",
-  "blocks": [
+  "token": "2i0ZbAtijqMzDmJKbXAyo0SZ",
+  "team_id": "TEGGX065N",
+  "context_team_id": "TEGGX065N",
+  "context_enterprise_id": null,
+  "api_app_id": "A01FA261L57",
+  "event": {
+    "user": "UEGLULXB3",
+    "type": "message",
+    "ts": "1723636826.815719",
+    "client_msg_id": "4eba1058-9f92-4e1b-ba2b-b8a95db4d464",
+    "text": "[[dragonhawk fate]]",
+    "team": "TEGGX065N",
+    "blocks": [
+      {
+        "type": "rich_text",
+        "block_id": "6aFRB",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "text",
+                "text": "[[dragonhawk fate]]"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "channel": "C03QYQ4QUBZ",
+    "event_ts": "1723636826.815719",
+    "channel_type": "group"
+  },
+  "type": "event_callback",
+  "event_id": "Ev07GYS7KHRA",
+  "event_time": 1723636826,
+  "authorizations": [
     {
-      "type": "rich_text",
-      "block_id": "GvgDe",
-      "elements": [
-        {
-          "type": "rich_text_section",
-          "elements": [
-            {
-              "type": "text",
-              "text": "[[ghalta]]"
-            }
-          ]
-        }
-      ]
+      "enterprise_id": null,
+      "team_id": "TEGGX065N",
+      "user_id": "U03RGASTV1B",
+      "is_bot": true,
+      "is_enterprise_install": false
     }
   ],
-  "channel": "C03QYQ4QUBZ",
-  "event_ts": "1723632855.345959",
-  "channel_type": "group"
+  "is_ext_shared_channel": false,
+  "event_context": "4-eyJldCI6Im1lc3NhZ2UiLCJ0aWQiOiJURUdHWDA2NU4iLCJhaWQiOiJBMDFGQTI2MUw1NyIsImNpZCI6IkMwM1FZUTRRVUJaIn0"
 }
